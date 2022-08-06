@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { Button, FlatList, StyleSheet, View } from "react-native";
+import { Button, FlatList, ScrollView, StyleSheet, View } from "react-native";
 import { AddToDo } from "./components/AddToDo";
 import { ToDoItem } from "./components/ToDoItem";
 import { useToDos } from "./hooks/useToDos";
@@ -35,6 +35,16 @@ export default function App() {
           />
         )}
       />
+      {/* <ScrollView>
+        {toDos.map((item, index) => (
+          <ToDoItem
+            key={item.id}
+            toDo={item}
+            remove={removeToDo}
+            style={{ marginTop: !index ? 20 : 0 }}
+          />
+        ))}
+      </ScrollView> */}
       <View style={{ margin: 30, marginTop: 15 }}>
         <Button title="Add items" onPress={setPlaceholderData} />
       </View>
