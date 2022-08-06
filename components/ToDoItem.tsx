@@ -3,6 +3,7 @@ import { ToDo } from "../hooks/useToDos";
 import { DeleteBtn } from "./DeleteBtn";
 import { Animated } from "react-native";
 import { useEffect, useRef } from "react";
+import Reanimated, { Layout } from "react-native-reanimated";
 
 type ToDoItemProps = {
   toDo: ToDo;
@@ -32,10 +33,8 @@ export const ToDoItem = ({
 
   // Fade out on delete
   const handleRemove = () => {
-    console.log("handle remove");
     animate(scale, 0.9);
     animate(opacity, 0, () => {
-      console.log("remove by id");
       remove(id);
     });
   };
@@ -47,8 +46,10 @@ export const ToDoItem = ({
   }, []);
 
   return (
+    // <Reanimated.View layout={Layout.springify()}>
     <Animated.View
       needsOffscreenAlphaCompositing
+      onLayout={({}) => {}}
       style={{
         backgroundColor: "#fff",
         opacity,
@@ -81,5 +82,6 @@ export const ToDoItem = ({
       </View>
       <DeleteBtn onPress={handleRemove} />
     </Animated.View>
+    // </Reanimated.View>
   );
 };

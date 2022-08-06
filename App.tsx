@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { Button, FlatList, ScrollView, StyleSheet, View } from "react-native";
+import { Button, FlatList, StyleSheet, View } from "react-native";
 import { AddToDo } from "./components/AddToDo";
 import { ToDoItem } from "./components/ToDoItem";
 import { useToDos } from "./hooks/useToDos";

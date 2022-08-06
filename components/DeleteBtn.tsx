@@ -1,7 +1,6 @@
 import { Animated, Pressable, ViewStyle } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
-import { useState } from "react";
 
 type DeleteIconProps = {
   onPress: () => void;
