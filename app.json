@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "MealPlanAndGroceryList",
-    "slug": "MealPlanAndGroceryList",
+    "name": "ListPractice",
+    "slug": "ListPractice",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
