@@ -2,8 +2,7 @@ import { LayoutAnimation, Text, View, ViewStyle } from "react-native";
 import { ToDo } from "../hooks/useToDos";
 import { DeleteBtn } from "./DeleteBtn";
 import { Animated } from "react-native";
-import { useEffect, useRef } from "react";
-import Reanimated, { Layout } from "react-native-reanimated";
+import { useRef } from "react";
 
 type ToDoItemProps = {
   toDo: ToDo;
@@ -16,41 +15,30 @@ export const ToDoItem = ({
   remove,
   style = {},
 }: ToDoItemProps) => {
-  const opacity = useRef(new Animated.Value(0)).current;
-  const scale = useRef(new Animated.Value(0.9)).current;
+  const opacity = useRef(new Animated.Value(1)).current;
+  const scale = useRef(new Animated.Value(1)).current;
 
-  const animate = (
-    animation: Animated.Value,
-    toValue: number,
-    cb = () => {}
-  ) => {
-    Animated.timing(animation, {
-      toValue,
-      duration: 200,
-      useNativeDriver: false,
-    }).start(cb);
-  };
-
-  // Fade out on delete
   const handleRemove = () => {
-    animate(scale, 0.9);
-    animate(opacity, 0, () => {
+    Animated.parallel([
+      Animated.timing(opacity, {
+        toValue: 0,
+        duration: 200,
+        useNativeDriver: false,
+      }),
+      Animated.timing(scale, {
+        toValue: 0.8,
+        duration: 200,
+        useNativeDriver: false,
+      }),
+    ]).start(() => {
       LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
       remove(id);
     });
   };
 
-  // Fade in on mount
-  useEffect(() => {
-    animate(opacity, 1);
-    animate(scale, 1);
-  }, []);
-
   return (
-    // <Reanimated.View layout={Layout.springify()}>
     <Animated.View
       needsOffscreenAlphaCompositing
-      onLayout={({}) => {}}
       style={{
         backgroundColor: "#fff",
         opacity,
@@ -83,6 +71,5 @@ export const ToDoItem = ({
       </View>
       <DeleteBtn onPress={handleRemove} />
     </Animated.View>
-    // </Reanimated.View>
   );
 };
