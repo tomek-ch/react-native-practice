@@ -1,4 +1,4 @@
-import { Text, View, ViewStyle } from "react-native";
+import { LayoutAnimation, Text, View, ViewStyle } from "react-native";
 import { ToDo } from "../hooks/useToDos";
 import { DeleteBtn } from "./DeleteBtn";
 import { Animated } from "react-native";
@@ -35,6 +35,7 @@ export const ToDoItem = ({
   const handleRemove = () => {
     animate(scale, 0.9);
     animate(opacity, 0, () => {
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
       remove(id);
     });
   };

@@ -1,5 +1,12 @@
 import { StatusBar } from "expo-status-bar";
-import { Button, FlatList, StyleSheet, View } from "react-native";
+import {
+  Button,
+  FlatList,
+  Platform,
+  StyleSheet,
+  UIManager,
+  View,
+} from "react-native";
 import { AddToDo } from "./components/AddToDo";
 import { ToDoItem } from "./components/ToDoItem";
 import { useToDos } from "./hooks/useToDos";
@@ -7,6 +14,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useSplashScreen } from "./hooks/useSplashScreen";
 import { useTheme } from "./hooks/useTheme";
 import { useBackgroundColor } from "./hooks/useBackgroundColor";
+
+if (Platform.OS === "android") {
+  UIManager.setLayoutAnimationEnabledExperimental?.(true);
+}
 
 export default function App() {
   const { toDos, createToDo, removeToDo, setPlaceholderData } = useToDos();
