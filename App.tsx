@@ -1,12 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import {
-  Button,
-  FlatList,
-  Platform,
-  StyleSheet,
-  UIManager,
-  View,
-} from "react-native";
+import { Button, ScrollView, StyleSheet, View } from "react-native";
 import { AddToDo } from "./components/AddToDo";
 import { ToDoItem } from "./components/ToDoItem";
 import { useToDos } from "./hooks/useToDos";
@@ -14,10 +7,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useSplashScreen } from "./hooks/useSplashScreen";
 import { useTheme } from "./hooks/useTheme";
 import { useBackgroundColor } from "./hooks/useBackgroundColor";
-
-if (Platform.OS === "android") {
-  UIManager.setLayoutAnimationEnabledExperimental?.(true);
-}
 
 export default function App() {
   const { toDos, createToDo, removeToDo, setPlaceholderData } = useToDos();
@@ -36,7 +25,7 @@ export default function App() {
       onLayout={onLayoutRootView}
     >
       <AddToDo handleAdd={createToDo} />
-      <FlatList
+      {/* <FlatList
         data={toDos}
         renderItem={({ item, index }) => (
           <ToDoItem
@@ -45,8 +34,8 @@ export default function App() {
             style={{ marginTop: !index ? 20 : 0 }}
           />
         )}
-      />
-      {/* <ScrollView>
+      /> */}
+      <ScrollView>
         {toDos.map((item, index) => (
           <ToDoItem
             key={item.id}
@@ -55,7 +44,7 @@ export default function App() {
             style={{ marginTop: !index ? 20 : 0 }}
           />
         ))}
-      </ScrollView> */}
+      </ScrollView>
       <View style={{ margin: 30, marginTop: 15 }}>
         <Button title="Add items" onPress={setPlaceholderData} />
       </View>

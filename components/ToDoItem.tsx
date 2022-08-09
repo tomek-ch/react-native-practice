@@ -1,8 +1,11 @@
-import { LayoutAnimation, Text, View, ViewStyle } from "react-native";
+import { Text, View, ViewStyle } from "react-native";
 import { ToDo } from "../hooks/useToDos";
 import { DeleteBtn } from "./DeleteBtn";
-import { Animated } from "react-native";
-import { useRef } from "react";
+import Animated, {
+  Layout,
+  SlideInLeft,
+  SlideOutRight,
+} from "react-native-reanimated";
 
 type ToDoItemProps = {
   toDo: ToDo;
@@ -15,34 +18,18 @@ export const ToDoItem = ({
   remove,
   style = {},
 }: ToDoItemProps) => {
-  const opacity = useRef(new Animated.Value(1)).current;
-  const scale = useRef(new Animated.Value(1)).current;
-
   const handleRemove = () => {
-    Animated.parallel([
-      Animated.timing(opacity, {
-        toValue: 0,
-        duration: 200,
-        useNativeDriver: false,
-      }),
-      Animated.timing(scale, {
-        toValue: 0.8,
-        duration: 200,
-        useNativeDriver: false,
-      }),
-    ]).start(() => {
-      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-      remove(id);
-    });
+    remove(id);
   };
 
   return (
     <Animated.View
+      entering={SlideInLeft}
+      exiting={SlideOutRight}
+      layout={Layout}
       needsOffscreenAlphaCompositing
       style={{
         backgroundColor: "#fff",
-        opacity,
-        transform: [{ scale }],
         elevation: 10,
         shadowColor: "#999",
         marginHorizontal: 20,

@@ -11,6 +11,12 @@ const placeholderData = [
   { text: "hello world", id: -1, done: false },
   { text: "hi there", id: -2, done: false },
   { text: "sup", id: -3, done: false },
+  { text: "hello world", id: -4, done: false },
+  { text: "hi there", id: -5, done: false },
+  { text: "sup", id: -6, done: false },
+  { text: "hello world", id: -7, done: false },
+  { text: "hi there", id: -8, done: false },
+  { text: "sup", id: -9, done: false },
 ];
 
 export const useToDos = () => {
