@@ -46,6 +46,8 @@ export const useToDos = () => {
 
   const setPlaceholderData = () => setToDos(placeholderData);
 
+  const getById = (id: number) => toDos.find((item) => item.id === id);
+
   return {
     toDos,
     createToDo,
@@ -53,5 +55,6 @@ export const useToDos = () => {
     toggleDone,
     editText,
     setPlaceholderData,
+    getById,
   };
 };

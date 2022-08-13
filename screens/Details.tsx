@@ -9,8 +9,8 @@ export const Details = ({
     params: { id },
   },
 }: DetailsProps) => {
-  const { toDos } = useToDosContext();
-  const toDo = toDos.find((item) => item.id === id);
+  const { getById } = useToDosContext();
+  const toDo = getById(id);
 
   if (!toDo) {
     return <Text style={{ padding: 20, fontSize: 20 }}>Not found</Text>;
