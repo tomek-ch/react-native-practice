@@ -14,7 +14,7 @@ type ToDoItemProps = {
   toDo: ToDo;
   style?: ViewStyle;
   remove: (id: number) => void;
-  onPress: () => void;
+  onPress: (id: number) => void;
 };
 
 export const ToDoItem = ({
@@ -44,7 +44,7 @@ export const ToDoItem = ({
           scale.value = withTiming(0.9, { duration: 100 }, () => {
             scale.value = withTiming(1, { duration: 100 });
           });
-          onPress();
+          onPress(id);
         }}
         needsOffscreenAlphaCompositing
         style={{

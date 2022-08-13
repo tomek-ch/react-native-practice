@@ -11,7 +11,7 @@ export const Home = ({ navigation: { navigate } }: HomeProps) => {
   const { createToDo, removeToDo, setPlaceholderData, toDos } =
     useToDosContext();
 
-  const onPress = () => navigate("Details");
+  const onPress = (id: number) => navigate("Details", { id });
 
   return (
     <>

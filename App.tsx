@@ -11,7 +11,7 @@ import { ToDosContextProvider } from "./context/ToDosContext";
 
 type RootStackParamList = {
   Home: undefined;
-  Details: undefined;
+  Details: { id: number };
 };
 
 export type ScreenProps<T extends keyof RootStackParamList> =
