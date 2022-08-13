@@ -34,6 +34,7 @@ export const AddToDo = ({ handleAdd }: AddToDoProps) => {
         padding: 20,
         paddingVertical: 10,
         marginHorizontal: 20,
+        marginVertical: 10,
       }}
     />
   );
