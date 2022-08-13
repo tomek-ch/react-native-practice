@@ -5,6 +5,9 @@ import Animated, {
   Layout,
   SlideInLeft,
   SlideOutRight,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
 } from "react-native-reanimated";
 
 type ToDoItemProps = {
@@ -24,16 +27,27 @@ export const ToDoItem = ({
     remove(id);
   };
 
+  const scale = useSharedValue(1);
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: scale.value }],
+  }));
+
   return (
     <Animated.View
       entering={SlideInLeft}
       exiting={SlideOutRight}
       layout={Layout}
+      style={animatedStyle}
     >
       <Pressable
-        onPress={onPress}
+        onPress={() => {
+          scale.value = withTiming(0.9, { duration: 100 }, () => {
+            scale.value = withTiming(1, { duration: 100 });
+          });
+          onPress();
+        }}
         needsOffscreenAlphaCompositing
-        style={({ pressed }) => ({
+        style={{
           backgroundColor: "#fff",
           elevation: 10,
           shadowColor: "#00000066",
@@ -45,9 +59,8 @@ export const ToDoItem = ({
           justifyContent: "space-between",
           alignItems: "center",
           overflow: "visible",
-          transform: pressed ? [{ scale: 0.9 }] : [],
           ...style,
-        })}
+        }}
       >
         <View style={{ flex: 1 }}>
           <Text
