@@ -12,9 +12,9 @@ export const Details = ({
   const { getById } = useToDosContext();
   const toDo = getById(id);
 
-  if (!toDo) {
-    return <Text style={{ padding: 20, fontSize: 20 }}>Not found</Text>;
-  }
-
-  return <Text style={{ padding: 20, fontSize: 20 }}>{toDo.text}</Text>;
+  return (
+    <Text style={{ padding: 20, fontSize: 20, marginTop: 60 }}>
+      {toDo?.text || "Not found"}
+    </Text>
+  );
 };

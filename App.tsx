@@ -44,13 +44,18 @@ export default function App() {
           <Stack.Navigator
             initialRouteName="Home"
             screenOptions={{
-              headerShown: false,
               statusBarStyle: "dark",
               statusBarColor: "#fff",
             }}
           >
             <Stack.Screen name="Details" component={Details} />
-            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen
+              name="Home"
+              component={Home}
+              options={{
+                headerShown: false,
+              }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </ToDosContextProvider>
